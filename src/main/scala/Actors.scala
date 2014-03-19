@@ -21,7 +21,8 @@ class Increaser(manager: ActorRef, counter: ActorRef) extends Actor {
 }
 
 class Manager extends Actor {
-  val counter = context.actorOf(Props(classOf[Counter], 0), "counter")
+  println("Starting Manager")
+  val counter = context.actorOf(Props(classOf[JCounter], 0), "counter")
 
   val children = (1 to 10).map { i => context.actorOf(
     Props(classOf[Increaser], self, counter), s"increaser-$i"
@@ -35,8 +36,11 @@ class Manager extends Actor {
 
 object Main {
   def main(args: Array[String]) {
+    println("Creating actor system")
     val system = ActorSystem("main")
+    println("Starting manager")
     system.actorOf(Props(classOf[Manager]), "manager")
+    println("Waiting for keypress")
     Console.readLine()
   }
 }
