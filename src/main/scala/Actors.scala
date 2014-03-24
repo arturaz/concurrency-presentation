@@ -22,7 +22,7 @@ class Increaser(manager: ActorRef, counter: ActorRef) extends Actor {
 
 class Manager extends Actor {
   println("Starting Manager")
-  val counter = context.actorOf(Props(classOf[JCounter], 0), "counter")
+  val counter = context.actorOf(Props(classOf[Counter], 0), "counter")
 
   val children = (1 to 10).map { i => context.actorOf(
     Props(classOf[Increaser], self, counter), s"increaser-$i"

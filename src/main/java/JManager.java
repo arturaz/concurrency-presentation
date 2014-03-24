@@ -13,7 +13,7 @@ public class JManager extends UntypedActor {
         ActorRef counter =
             context().actorOf(Props.create(JCounter.class, 0), "counter");
         for (int i = 0; i < 10; i++) context().actorOf(
-                Props.create(Increaser.class, self(), counter),
+                Props.create(JIncreaser.class, self(), counter),
                 "increaser-" + i
         );
     }

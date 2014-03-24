@@ -11,7 +11,7 @@ public class JMain {
         System.out.println("Starting actor system");
         ActorSystem system = ActorSystem.apply("main");
         System.out.println("Creating manager");
-        system.actorOf(Props.create(Manager.class), "manager");
+        system.actorOf(Props.create(JManager.class), "manager");
         System.out.println("Waiting for keypress");
         int ignored = System.in.read();
     }
